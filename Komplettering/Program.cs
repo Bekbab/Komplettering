@@ -8,6 +8,17 @@ namespace Komplettering
     class Program
     {
 
+
+        static int GetAge()
+        {
+            Console.WriteLine("Hur gammal är du?");
+            string inputAge = Console.ReadLine();
+            int result;
+            bool isNumber = int.TryParse(inputAge, out result); //result blir 0 om inputAge innhåller bokstäver
+            return result;
+
+        }
+
         static void ReturnAge(int age)
         {
             if (age > 0 && age < 120)
@@ -28,18 +39,13 @@ namespace Komplettering
                 Console.WriteLine("Det där är ingen giltig ålder");
             }
         }
-
         public static bool ageGotten = false;
         static void Main(string[] args)
         {
             //Spelets loop baseras på att den kommer att fortsätta fråga efter en ålder så länge den inte har blivit mellan 1 och 120
             while (ageGotten == false)
             {
-                Console.WriteLine("Hur gammal är du?");
-                string inputAge = Console.ReadLine();
-                int result;
-                bool isNumber = int.TryParse(inputAge, out result); //result blir 0 om inputAge innhåller bokstäver
-                ReturnAge(result);
+                ReturnAge(GetAge());
             }
             Console.ReadLine();
         }
